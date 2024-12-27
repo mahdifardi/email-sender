@@ -1,8 +1,11 @@
 import client, { Connection, Channel, ConsumeMessage } from "amqplib";
+import { MockEmailService } from "./mock-email.service";
 
-type HandlerCB = (msg: string) => any;
+type HandlerCB = (msg: string, emailService: MockEmailService) => any;
 
 export class RabbitMQConnection {
+  constructor(private emailService: MockEmailService) {}
+
   connection!: Connection;
   channel!: Channel;
   private connected!: boolean;
@@ -81,7 +84,7 @@ export class RabbitMQConnection {
           if (!msg) {
             return console.error(`Invalid incoming message`);
           }
-          handleIncomingNotification(msg.content.toString());
+          handleIncomingNotification(msg.content.toString(), this.emailService);
           this.channel.ack(msg);
         },
         {
