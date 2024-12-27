@@ -1,0 +1,22 @@
+{
+  "name": "email-sender",
+  "version": "1.0.0",
+  "description": "consuem messages from rabbitMQ queue and send emil",
+  "main": ".src/main.ts",
+  "scripts": {
+    "start": "ts-node ./src/main.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.10.6",
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.5"
+  }
+}
